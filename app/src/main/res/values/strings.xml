@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FFShopMall</string>
+    <string name="main_tab_homepage">主页</string>
+    <string name="main_tab_mall">购物中心</string>
+    <string name="sm_top_shoptype">全部分类</string>
+    <string name="sm_top_floor">全部楼层</string>
+    <string name="sm_top_indoormap">室内地图</string>
+</resources>

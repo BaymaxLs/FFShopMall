@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+
+        <LinearLayout
+            android:id="@+id/id_top_location"
+            android:layout_width="360dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <net.steamcrafted.materialiconlib.MaterialIconView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:materialIcon="map_marker_radius"
+                app:materialIconColor="#ffffff"
+                app:materialIconSize="24dp"
+                android:background="#00000000"
+                android:id="@+id/id_top_icon_city"
+                />
+
+            <TextView
+                android:id="@+id/id_top_tv_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请选择"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            app:materialIcon="magnify"
+            app:materialIconColor="#ffffff"
+            app:materialIconSize="28dp"
+            android:background="#00000000"
+            android:paddingRight="10dp"
+            android:id="@+id/id_top_icon_search"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

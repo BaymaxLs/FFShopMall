@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="85dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/id_tab_sm_img_thumbnail"
+        android:layout_width="140dp"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        android:background="@android:color/darker_gray"
+        android:src="@drawable/i_20121019_1342223064" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:orientation="vertical"
+        android:paddingLeft="3dp"
+        android:paddingTop="4dp">
+
+        <TextView
+            android:id="@+id/id_tab_sm_tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingBottom="3dp"
+            android:text="One Mall汇一城"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/id_tab_sm_tv_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:text="广东省东莞市南城区鸿福路200号（鸿福路与东莞大道交汇处"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/id_tab_sm_tv_distance"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right|center"
+            android:paddingRight="3dp"
+            android:text="13.8公里"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

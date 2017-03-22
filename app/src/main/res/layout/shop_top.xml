@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/colorPrimary"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:id="@+id/id_shop_top_icon_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="#00000000"
+            android:paddingLeft="5dp"
+            app:materialIcon="arrow_left"
+            app:materialIconColor="#ffffff"
+            app:materialIconSize="28dp" />
+
+            <TextView
+                android:id="@+id/id_shop_top_tv_mallname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:text="门店详情"
+                android:textSize="22sp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

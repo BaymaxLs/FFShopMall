@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#F3F3F3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            app:materialIcon="arrow_left"
+            app:materialIconColor="#333333"
+            app:materialIconSize="24dp"
+            android:background="#00000000"
+            android:id="@+id/id_search_icon_back"
+            android:layout_gravity="center_vertical"
+            />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/id_search_et_input"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:drawableLeft="@drawable/magnify"
+
+                android:drawablePadding="5dp"
+                android:background="#FFFFFF"
+                android:textSize="16sp"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:hint="请输入商家名、品类或商圈..."
+                />
+
+            <net.steamcrafted.materialiconlib.MaterialIconView
+                android:id="@+id/id_search_icon_delete"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:materialIcon="close_circle"
+                app:materialIconColor="#D8D8D8"
+                app:materialIconSize="20dp"
+                android:layout_gravity="right|center_vertical"
+                />
+
+
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/id_search_tv_search"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3BBAF2"
+            android:layout_gravity="center_vertical"
+            android:background="#00000000"
+            android:text="搜索"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>
