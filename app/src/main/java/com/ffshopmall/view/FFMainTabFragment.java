@@ -56,14 +56,14 @@ public class FFMainTabFragment extends Fragment {
         return sm_data;
     }
 
-    public FFMainTabFragment(int pos) {
-        this.pos = pos;
+    public FFMainTabFragment() {
+
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        this.pos = getArguments().getInt("pos");
         getData();
         View view = null;
         switch (pos) {

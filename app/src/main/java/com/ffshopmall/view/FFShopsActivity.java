@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.ffshopmall.FMmap.map.FMMapBasic;
 import com.ffshopmall.R;
 import com.ffshopmall.adapter.CommonAdapter;
 import com.ffshopmall.adapter.ViewHolder;
@@ -32,6 +33,7 @@ public class FFShopsActivity extends Activity {
     private TextView shoppingmall_name;
     private Spinner type_Spinner;
     private Spinner floor_Spinner;
+    private TextView tv_map;
     private List<String> type_List;
     private List<String> floor_List;
     /**
@@ -183,6 +185,15 @@ public class FFShopsActivity extends Activity {
             }
         });
 
+        tv_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("!!!!!!!!!!!!!!!!!");
+                startActivity(new Intent(FFShopsActivity.this, FMMapBasic.class));
+
+            }
+        });
+
     }
 
     private void initView() {
@@ -194,6 +205,8 @@ public class FFShopsActivity extends Activity {
         shoppingmall_name = (TextView) findViewById(R.id.id_sm_top_tv_mallname);
 
         type_Spinner = (Spinner) findViewById(R.id.id_sm_top_type_shoptype);
+
+        tv_map = (TextView) findViewById(R.id.id_sm_top_tv_map);
 
         floor_Spinner = (Spinner) findViewById(R.id.id_sm_top_type_floor);
 

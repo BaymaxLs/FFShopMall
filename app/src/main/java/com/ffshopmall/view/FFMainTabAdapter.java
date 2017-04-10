@@ -1,5 +1,6 @@
 package com.ffshopmall.view;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -26,7 +27,10 @@ public class FFMainTabAdapter extends FragmentPagerAdapter implements IconPagerA
 
     @Override
     public Fragment getItem(int position) {
-        FFMainTabFragment fragment = new FFMainTabFragment(position);
+        FFMainTabFragment fragment = new FFMainTabFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("pos",position);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
