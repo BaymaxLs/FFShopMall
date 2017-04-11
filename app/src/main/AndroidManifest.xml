@@ -44,7 +44,7 @@
 
         </activity>
 
-        <activity android:name=".FMmap.map.FMMapBasic">
+        <activity android:name=".FMmap.map.FMMapMain">
 
         </activity>
         <activity
@@ -53,8 +53,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
 
+        <!--高德地图开发者密钥-->
         <meta-data android:name="com.amap.api.v2.apikey"
-            android:value="30b50ab7219d8ab7b4ea4d0f26a73cd3"/>
+            android:value="da2de4619d75d9f3527a1211e6d17f73"/>
+
+        <!--蜂鸟云开发者密钥-->
         <meta-data
             android:name="com.fengmap.mapapi.appkey"
             android:value="ce13bc44b3d912da300a1fd61e858aa0"/>
