@@ -31,6 +31,6 @@
             android:textColor="@android:color/black"
             android:typeface="serif"
             android:gravity="center"
-            android:id="@+id/textView" />
+            android:id="@+id/id_sm_top_tv_map" />
 
 </LinearLayout>

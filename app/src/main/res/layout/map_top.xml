@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:id="@+id/id_map_top_icon_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            app:materialIcon="arrow_left"
+            app:materialIconColor="#ffffff"
+            app:materialIconSize="28dp"
+            android:background="#00000000"
+            />
+
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:id="@+id/id_map_top_icon_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="10dp"
+            app:materialIcon="magnify"
+            app:materialIconColor="#ffffff"
+            app:materialIconSize="28dp"
+            android:background="#00000000"
+            />
+
+        <LinearLayout
+            android:id="@+id/id_map_top_mallname"
+            android:layout_width="360dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:id="@+id/id_map_top_tv_mallname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

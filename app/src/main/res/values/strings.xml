@@ -5,4 +5,7 @@
     <string name="sm_top_shoptype">全部分类</string>
     <string name="sm_top_floor">全部楼层</string>
     <string name="sm_top_indoormap">室内地图</string>
+    <string name="demo_title_main_basemap">基本地图显示 - FMMapBasic</string>
+    <string name="demo_title_basemap">基本地图显示</string>
+
 </resources>
