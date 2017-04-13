@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ffshopmall.R;
+import com.ffshopmall.adapter.FFMainTabAdapter;
 import com.viewpagerindicator.TabPageIndicator;
 import com.zaaach.citypicker.CityPickerActivity;
 
@@ -32,6 +33,7 @@ public class FFMainActivity extends FragmentActivity {
     private ListView sm_list;
     private FragmentManager manager;
     private FragmentTransaction transaction;
+    private String cityName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,16 +94,31 @@ public class FFMainActivity extends FragmentActivity {
 
         manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
-
-        transaction.add(R.id.id_main_activity_ffmain,new Fragment());
+        Fragment mall_fragment = new Fragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("city","深圳");
+        mall_fragment.setArguments(bundle);
+        transaction.add(R.id.id_main_activity_ffmain,mall_fragment);
+        transaction.commit();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
         if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK) {
             if (data != null) {
                 String city = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY);
                 tv_city.setText(city);
+
+                Intent in = new Intent();
+
+//                Fragment mall_fragment = new FFMainTabFragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putString("city","深圳");
+//                mall_fragment.setArguments(bundle);
+//                transaction = manager.beginTransaction();
+//                transaction.add(R.id.id_main_activity_ffmain,mall_fragment);
+//                transaction.commitAllowingStateLoss();
 
             }
         }

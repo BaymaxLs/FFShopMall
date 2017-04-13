@@ -1,4 +1,4 @@
-package com.ffshopmall.view;
+package com.ffshopmall.adapter;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ffshopmall.R;
+import com.ffshopmall.view.FFMainTabFragment;
 import com.viewpagerindicator.IconPagerAdapter;
 
 /**
