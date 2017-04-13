@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.ffshopmall.R;
 import com.ffshopmall.adapter.CommonAdapter;
+import com.ffshopmall.adapter.FFMainTabAdapter;
 import com.ffshopmall.adapter.ViewHolder;
 import com.ffshopmall.model.bean;
 
@@ -64,6 +65,8 @@ public class FFMainTabFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.pos = getArguments().getInt("pos");
+        Bundle bundle = getArguments();
+        System.out.println("!!!"+bundle.getString("city"));
         getData();
         View view = null;
         switch (pos) {
@@ -100,4 +103,12 @@ public class FFMainTabFragment extends Fragment {
         }
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Bundle bundle2 = getArguments();
+        System.out.println("!!!22"+bundle2.getString("city"));
+    }
+
 }
