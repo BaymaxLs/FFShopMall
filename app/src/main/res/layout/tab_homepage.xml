@@ -4,16 +4,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/tab_top_homepage"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/recommendshop" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="2dp"
+            android:text="店铺推荐"
+            android:textColor="#17abe3"
+            android:textSize="20sp" />
+    </LinearLayout>
+
     <ListView
         android:id="@+id/id_tab_homepage_lv_recommendshop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </ListView>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        ></ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/hp_sale"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="3dp"
+            android:text="优惠活动"
+            android:textSize="20sp"
+            android:textColor="#d3217b"
+            />
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/id_tab_homepage_lv_preferential_info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        >
 
     </ListView>
 

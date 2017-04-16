@@ -19,7 +19,7 @@ public class FFMainTabAdapter extends FragmentPagerAdapter implements IconPagerA
             "主页", "购物中心"
     };
     public static int[] ICONS = new int[]{
-            R.drawable.home_outline, R.drawable.shopping,
+            R.drawable.homepage, R.drawable.shopping,
     };
 
     public FFMainTabAdapter(FragmentManager fm) {

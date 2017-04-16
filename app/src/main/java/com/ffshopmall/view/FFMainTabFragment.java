@@ -9,13 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.ffshopmall.R;
 import com.ffshopmall.adapter.CommonAdapter;
-import com.ffshopmall.adapter.FFMainTabAdapter;
 import com.ffshopmall.adapter.ViewHolder;
 import com.ffshopmall.model.bean;
+import com.ffshopmall.model.recommendshopbean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +26,20 @@ import java.util.List;
 
 public class FFMainTabFragment extends Fragment {
     private int pos;
+    /**
+     * 购物中心ListView
+     */
     private ListView m_listview;
     private CommonAdapter<bean> m_Adapter;
+    /**
+     * 推荐商铺ListView
+     */
+    private ListView rs_listview;
+    private CommonAdapter<recommendshopbean> rs_Adapter;
+
     private List<bean> data;
     private List<bean> sm_data;
+    private List<recommendshopbean> rs_data;
 
     public List<bean> getData() {
         data = new ArrayList<bean>();
@@ -43,6 +52,12 @@ public class FFMainTabFragment extends Fragment {
         data.add(new bean(7,"深圳市", "海岸城", R.drawable.i_20121019_1342223064, "广东省东莞市南城区鸿福路200号（鸿福路与东莞大道交汇处", "13.8公里"));
         data.add(new bean(8,"深圳市", "皇庭广场", R.drawable.i_20121019_1342223064, "广东省东莞市南城区鸿福路200号（鸿福路与东莞大道交汇处", "13.8公里"));
         return data;
+    }
+
+    public List<recommendshopbean> getRs_data(){
+        rs_data = new ArrayList<recommendshopbean>();
+        rs_data.add(new recommendshopbean(101,R.drawable.rs_starbuck,"星巴克（汇一城店）","美式咖啡","抹茶星冰乐","摩卡星冰乐",1));
+        return rs_data;
     }
 
     public List<bean> getSm_data(String city) {
@@ -68,12 +83,33 @@ public class FFMainTabFragment extends Fragment {
         Bundle bundle = getArguments();
         System.out.println("!!!"+bundle.getString("city"));
         getData();
+        getRs_data();
         View view = null;
         switch (pos) {
             case 0:
-                view = inflater.inflate(R.layout.tab, container, false);
-                TextView tv = (TextView) view.findViewById(R.id.tv_test);
-                tv.setText(FFMainTabAdapter.CONTENT[pos] + Integer.toString(pos));
+                view = inflater.inflate(R.layout.tab_homepage, container, false);
+                rs_listview = (ListView) view.findViewById(R.id.id_tab_homepage_lv_recommendshop);
+                rs_listview.setAdapter(rs_Adapter = new CommonAdapter<recommendshopbean>(R.layout.tab_list_hp_recommendshop,getContext(),rs_data) {
+                    @Override
+                    public void convert(ViewHolder holder, recommendshopbean item) {
+                        holder.setText(R.id.id_tab_hp_rs_tv_shopname, item.getShopName());
+                        holder.setImageResource(R.id.id_tab_hp_rs_iv_logo, item.getShopLogo());
+                        holder.setText(R.id.id_tab_hp_rg_tv_goodsname1,item.getShopGoods1());
+                        holder.setText(R.id.id_tab_hp_rg_tv_goodsname2,item.getShopGoods2());
+                        holder.setText(R.id.id_tab_hp_rg_tv_goodsname3,item.getShopGoods3());
+                    }
+                });
+                rs_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent m_intent = new Intent();
+                        Bundle m_bundle = new Bundle();
+                        m_bundle.putInt("shopId",rs_data.get(position).getShopId());
+                        m_intent.putExtras(m_bundle);
+                        m_intent.setClass(getActivity(),FFShopActivity.class);
+                        startActivity(m_intent);
+                    }
+                });
                 break;
             case 1:
                 view = inflater.inflate(R.layout.tab_shoppingmall, container, false);
