@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+<ImageView
+    android:id="@+id/id_sale_list_iv_image"
+    android:layout_width="100dp"
+    android:layout_height="60dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="3dp"
+    android:layout_marginRight="3dp"
+    android:src="@drawable/starbuck_saleimage"
+    />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        >
+        <TextView
+            android:id="@+id/id_sale_list_tv_salename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="当季新品 冷萃冰咖啡"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/id_sale_list_tv_saletime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2017.04.01 - 2017.06.01"
+            android:textSize="14sp"
+            android:textColor="@android:color/holo_red_light"
+            />
+
+    </LinearLayout>
+</LinearLayout>
