@@ -6,18 +6,30 @@ package com.ffshopmall.model;
 
 public class saleinfobean {
 
+    private int saleId;
     private int shopId;
     private String saleName;
     private int saleImage;
+    private int saleImage2;
     private String saleTime;
     private String saleContent;
 
-    public saleinfobean(int shopId, String saleName, int saleImage, String saleTime, String saleContent) {
+    public saleinfobean(int saleId, int shopId, String saleName, int saleImage, int saleImage2, String saleTime, String saleContent) {
+        this.saleId = saleId;
         this.shopId = shopId;
         this.saleName = saleName;
         this.saleImage = saleImage;
+        this.saleImage2 = saleImage2;
         this.saleTime = saleTime;
         this.saleContent = saleContent;
+    }
+
+    public int getSaleId() {
+        return saleId;
+    }
+
+    public void setSaleId(int saleId) {
+        this.saleId = saleId;
     }
 
     public int getShopId() {
@@ -42,6 +54,14 @@ public class saleinfobean {
 
     public void setSaleImage(int saleImage) {
         this.saleImage = saleImage;
+    }
+
+    public int getSaleImage2() {
+        return saleImage2;
+    }
+
+    public void setSaleImage2(int saleImage2) {
+        this.saleImage2 = saleImage2;
     }
 
     public String getSaleTime() {

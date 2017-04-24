@@ -1,10 +1,12 @@
 package com.ffshopmall.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -57,8 +59,8 @@ public class FFShopActivity extends Activity {
 
     public List<saleinfobean> getSale_data(){
         sale_data = new ArrayList<saleinfobean>();
-        sale_data.add(new saleinfobean(101,"当季新品 冷萃冰咖啡",R.drawable.starbuck_saleimage,"2017.04.01 - 2017.06.01","去年夏天让你爱不释手的冷萃冰咖啡，现在终于回归了。而今年，星巴克西雅图咖啡团队又进一步探索关于它的更多可能，新研发了一款“轻甜香草风味奶油冷萃冰咖啡”，快去你身边的星巴克门店，感受专属咖啡豆的甘醇与本味。（同期还有全新设计的冷萃咖啡星享卡）"));
-        sale_data.add(new saleinfobean(101,"当季新品 星冰粽",R.drawable.starbuck_saleimage2,"2017.05.01 - 2017.07.01","悠闲的夏午后，怎能少得清甜品的陪伴。全新星巴克星冰粽，将你喜欢的饮品冷萃和桃桃变成甜品，多重味的冰沁甜点，打造你的轻甜夏时光。"));
+        sale_data.add(new saleinfobean(10101,101,"当季新品 冷萃冰咖啡",R.drawable.starbuck_saleimage,R.drawable.starbuck_saleimage11,"2017.04.01 - 2017.06.01","去年夏天让你爱不释手的冷萃冰咖啡，现在终于回归了。而今年，星巴克西雅图咖啡团队又进一步探索关于它的更多可能，新研发了一款“轻甜香草风味奶油冷萃冰咖啡”，快去你身边的星巴克门店，感受专属咖啡豆的甘醇与本味。（同期还有全新设计的冷萃咖啡星享卡）"));
+        sale_data.add(new saleinfobean(10102,101,"当季新品 星冰粽",R.drawable.starbuck_saleimage2,R.drawable.starbuck_saleimage22,"2017.05.01 - 2017.07.01","悠闲的夏午后，怎能少得清甜品的陪伴。全新星巴克星冰粽，将你喜欢的饮品冷萃和桃桃变成甜品，多重味的冰沁甜点，打造你的轻甜夏时光。"));
         return sale_data;
     }
 
@@ -68,7 +70,6 @@ public class FFShopActivity extends Activity {
                 bean = new shopinfobean(newbean.getShopId(),newbean.getShopImage(),newbean.getShopLogo(),newbean.getShopName(),newbean.getShopAddress(),newbean.getFloorAddress(),newbean.getShopActivity(),newbean.getShopInfo());
             }
         }
-
         return bean;
     }
 
@@ -115,18 +116,38 @@ public class FFShopActivity extends Activity {
         tv_shopAddress.setText(bean.getShopAddress());
         tv_floorAddress.setText(bean.getFloorAddress());
         tv_shopGuide.setText("导航到"+bean.getShopName());
-        tv_shopActivity.setText(bean.getShopActivity());
+//        tv_shopActivity.setText(bean.getShopActivity());
         tv_shopInfo.setText(bean.getShopInfo());
 
     }
 
     private void initEvent() {
+        /**
+         * 返回按钮监听
+         */
         icon_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FFShopActivity.this.finish();
             }
         });
+
+        /**
+         * 活动列表监听
+         */
+        lv_saleinfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putInt("shopId",bean.getShopId());
+                bundle.putInt("saleId",sale_data.get(position).getSaleId());
+                intent.putExtras(bundle);
+                intent.setClass(FFShopActivity.this,FFShopSaleActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void initAdapter(){

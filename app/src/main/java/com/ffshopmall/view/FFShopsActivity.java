@@ -127,6 +127,9 @@ public class FFShopsActivity extends Activity {
 
     private void initEvent() {
 
+        /**
+         * 返回按钮监听
+         */
         icon_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,7 +137,7 @@ public class FFShopsActivity extends Activity {
             }
         });
 
-        /*
+        /**
         * 商铺ListView点击监听，点击进入商铺详情
         * */
         shop_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -146,11 +149,10 @@ public class FFShopsActivity extends Activity {
                 intent.putExtras(bundle);
                 intent.setClass(FFShopsActivity.this,FFShopActivity.class);
                 startActivity(intent);
-
             }
         });
 
-        /*
+        /**
         * 分类下拉监听
         * */
         type_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -167,7 +169,7 @@ public class FFShopsActivity extends Activity {
                 setAdapter_shopListView();
             }
         });
-        /*
+        /**
         * 楼层下拉监听
         * */
         floor_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

@@ -47,6 +47,11 @@
         <activity android:name=".FMmap.map.FMMapMain">
 
         </activity>
+
+        <activity android:name=".view.FFShopSaleActivity">
+
+        </activity>
+
         <activity
             android:name="com.zaaach.citypicker.CityPickerActivity"
             android:theme="@style/CityPicker.NoActionBar"
