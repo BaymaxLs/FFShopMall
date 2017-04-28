@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.ffshopmall.FMmap.map.FMMapMain;
+import com.ffshopmall.IndoorMap.view.FFIndoorMapMain;
 import com.ffshopmall.R;
 import com.ffshopmall.adapter.CommonAdapter;
 import com.ffshopmall.adapter.ViewHolder;
@@ -191,7 +192,7 @@ public class FFShopsActivity extends Activity {
             @Override
             public void onClick(View v) {
                 System.out.println("!!!!!!!!!!!!!!!!!");
-                startActivity(new Intent(FFShopsActivity.this, FMMapMain.class));
+                startActivity(new Intent(FFShopsActivity.this, FFIndoorMapMain.class));
 
             }
         });

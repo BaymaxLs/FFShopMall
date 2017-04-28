@@ -2,18 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ffshopmall">
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_ALL_EXTERNAL_STORAGE" />
 
-    <!-- 写入扩展存储，向扩展卡写入数据 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <!-- 读取设备外部存储空间 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <!-- 访问网络，加载网络地图需要上网 -->
+    <!--允许程序打开网络套接字-->
     <uses-permission android:name="android.permission.INTERNET"/>
-    <!-- 允许程序访问有关GSM网络信息 -->
+    <!--允许程序设置内置sd卡的写权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--允许程序设置内置sd卡的读权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--允许程序获取网络状态-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!--允许程序访问WiFi网络信息-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!--允许程序读写手机状态和身份-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!--允许程序访问CellID或WiFi热点来获取粗略的位置-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!--允许程序连接蓝牙-->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <!--允许程序发现蓝牙配对-->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <!--允许程序获取精确的位置-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <uses-feature android:glEsVersion="0x00020000" android:required="true" />
 
@@ -52,6 +62,14 @@
 
         </activity>
 
+        <activity android:name=".IndoorMap.view.FFIndoorMapMain">
+
+        </activity>
+
+        <activity android:name=".IndoorMap.view.FFIndoorMapDialogActivity">
+
+        </activity>
+
         <activity
             android:name="com.zaaach.citypicker.CityPickerActivity"
             android:theme="@style/CityPicker.NoActionBar"
@@ -61,6 +79,9 @@
         <!--高德地图开发者密钥-->
         <meta-data android:name="com.amap.api.v2.apikey"
             android:value="30b50ab7219d8ab7b4ea4d0f26a73cd3"/>
+
+        <!--高德地图室内开发者密钥-->
+        <meta-data android:name="indoormap3d_key" android:value="aa554db24e62a3e9ce02ab9d2576356b"/>
 
         <!--蜂鸟云开发者密钥-->
         <meta-data

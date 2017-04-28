@@ -20,6 +20,13 @@ android {
 
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+        }
+}
+
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -39,5 +46,9 @@ dependencies {
         * 引入GitHub上JakeWharton的viewpagerindicator项目
         * */
     compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
+    /*
+    *   解压高德室内地图arr文件
+    * */
+    compile(name: 'IndoorMapSDK2.2.5', ext: 'aar')
     compile files('libs/fengmap_2.0.5.jar')
 }
