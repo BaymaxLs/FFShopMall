@@ -1,8 +1,11 @@
 package com.ffshopmall.view;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -13,6 +16,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ffshopmall.IndoorMap.view.FFIndoorGuideShop;
+import com.ffshopmall.IndoorMap.view.FFIndoorMapMain;
 import com.ffshopmall.R;
 import com.ffshopmall.adapter.CommonAdapter;
 import com.ffshopmall.adapter.ViewHolder;
@@ -44,6 +49,11 @@ public class FFShopActivity extends Activity {
     private ListView lv_saleinfo;
     private CommonAdapter<saleinfobean> sale_Adapter;
     private List<saleinfobean> sale_data;
+    //商铺的id
+    private String poiId = "GD0009320210100003";
+
+    private FragmentManager mFragmentManager = null;
+    private FragmentTransaction mFragmentTransaction = null;
 
     private shopinfobean bean;
     private List<shopinfobean> shop_data;
@@ -145,6 +155,23 @@ public class FFShopActivity extends Activity {
                 intent.putExtras(bundle);
                 intent.setClass(FFShopActivity.this,FFShopSaleActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        ll_shopGuide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                mFragmentManager = getFragmentManager();
+//                mFragmentTransaction = mFragmentManager.beginTransaction();
+//                FFIndoorGuideShop guideShopFragment = new FFIndoorGuideShop();
+                Intent intent = new Intent(FFShopActivity.this, FFIndoorMapMain.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("poiId",poiId);
+                bundle.putString("poiName",bean.getShopName());
+                intent.putExtras(bundle);
+                startActivity(intent);
+//                guideShopFragment.setArguments(bundle);
+//                mFragmentTransaction.commit();
             }
         });
 
