@@ -3,6 +3,7 @@ package com.ffshopmall.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -17,8 +18,20 @@ import com.ffshopmall.IndoorMap.view.FFIndoorMapMain;
 import com.ffshopmall.R;
 import com.ffshopmall.adapter.CommonAdapter;
 import com.ffshopmall.adapter.ViewHolder;
-import com.ffshopmall.model.shopbean;
+import com.ffshopmall.model.Shopbean;
+import com.ffshopmall.utils.FileUtils;
+import com.ffshopmall.utils.HttpImage;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +42,7 @@ import java.util.List;
 public class FFShopsActivity extends Activity {
 
     private ListView shop_ListView;
-    private CommonAdapter<shopbean> shop_Adapter;
+    private CommonAdapter<Shopbean> shop_Adapter;
     private ImageView icon_back;
     private TextView shoppingmall_name;
     private Spinner type_Spinner;
@@ -42,9 +55,12 @@ public class FFShopsActivity extends Activity {
      * sm_data是该商场的所有店铺数据，从上个activity传值过来后，所有处理过的数据都应该以sm_data为总数据
      * shopdata是存放处理后的数据，最终view也是以该数据绘图的
      * */
-    private List<shopbean> data;
-    private List<shopbean> sm_data;
-    private List<shopbean> shopdata;
+    private List<Shopbean> data;
+//    private List<Shopbean> sm_data;
+    private List<Shopbean> shopdata;
+    private String distance = null;
+
+    private String shopUrl = FileUtils.URLIP+"FFShopMall/shopjson!findShopJson.action?shopmallId=";
 
     private List<String> getType_List(){
         type_List = new ArrayList<String>();
@@ -58,39 +74,43 @@ public class FFShopsActivity extends Activity {
     private List<String> getFloor_List(){
         floor_List = new ArrayList<String>();
         floor_List.add("全部");
-        floor_List.add("B2层");
-        floor_List.add("B1层");
-        floor_List.add("F1层");
+        floor_List.add("2B层");
+        floor_List.add("1B层");
+        floor_List.add("1F层");
+        floor_List.add("2F层");
+        floor_List.add("3F层");
+        floor_List.add("4F层");
         return floor_List;
     }
 
-    public List<shopbean> getData(){
-        data = new ArrayList<shopbean>();
-        data.add(new shopbean(101,1,"星巴克（汇一城店）",R.drawable.starbuck,"餐饮","F1层","9.8公里"));
-        data.add(new shopbean(102,1,"GAP（汇一城店）",R.drawable.starbuck,"服饰","F1层","9.8公里"));
-        data.add(new shopbean(103,2,"GAT（汇一城店）",R.drawable.starbuck,"服饰","F1层","9.8公里"));
-        return data;
-    }
+//    public List<shopbean> getData(){
+//        data = new ArrayList<shopbean>();
+//        data.add(new shopbean(101,1,"星巴克（东城万达店）",R.drawable.starbuck,"餐饮","F1层","9.8公里"));
+//        data.add(new shopbean(102,1,"金汤匙台湾新料理",R.drawable.jintangshaologo,"餐饮","F3层","9.8公里"));
+////        data.add(new shopbean(102,1,"GAP（汇一城店）",R.drawable.starbuck,"服饰","F1层","9.8公里"));
+//        data.add(new shopbean(103,2,"星巴克（北京爱琴海店）",R.drawable.starbuck,"餐饮","F1层","2167.6公里"));
+//        return data;
+//    }
 
-    public List<shopbean> getShopData(int shoppingmall_Id){
-        sm_data = new ArrayList<shopbean>();
-        shopdata = new ArrayList<shopbean>();
-        for(shopbean newdata:data){
-            if(newdata.getShopmall_id()==shoppingmall_Id){
-                sm_data.add(newdata);
-            }
-        }
-        shopdata.addAll(sm_data);
-        return sm_data;
-    }
+//    public List<Shopbean> getShopData(String shoppingmall_Id){
+//        sm_data = new ArrayList<Shopbean>();
+//        shopdata = new ArrayList<Shopbean>();
+//        for(Shopbean newdata:data){
+//            if(newdata.getShopmallId().equals(shoppingmall_Id)){
+//                sm_data.add(newdata);
+//            }
+//        }
+//        shopdata.addAll(sm_data);
+//        return sm_data;
+//    }
 
-    public List<shopbean> getShopTypeData(String type){
-        shopdata = new ArrayList<shopbean>();
+    public List<Shopbean> getShopTypeData(String type){
+        shopdata = new ArrayList<Shopbean>();
         if (type.equals("全部")) {
-            shopdata.addAll(sm_data);
+            shopdata.addAll(data);
         }else {
-            for(shopbean newdata:sm_data){
-                if(newdata.getType().equals(type)){
+            for(Shopbean newdata:data){
+                if(newdata.getShopType().equals(type)){
                     shopdata.add(newdata);
                 }
             }
@@ -98,13 +118,13 @@ public class FFShopsActivity extends Activity {
         return shopdata;
     }
 
-    public List<shopbean> getShopFloorData(String floor){
-        shopdata = new ArrayList<shopbean>();
+    public List<Shopbean> getShopFloorData(String floor){
+        shopdata = new ArrayList<Shopbean>();
         if (floor.equals("全部")) {
-            shopdata.addAll(sm_data);
+            shopdata.addAll(data);
         }else {
-            for(shopbean newdata:sm_data){
-                if(newdata.getFloor().equals(floor)){
+            for(Shopbean newdata:data){
+                if(newdata.getShopFloor().equals(floor)){
                     shopdata.add(newdata);
                 }
             }
@@ -114,6 +134,12 @@ public class FFShopsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                .detectDiskReads().detectDiskWrites().detectNetwork()
+                .penaltyLog().build());
+        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                .detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
+                .penaltyLog().penaltyDeath().build());
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_sm);
@@ -146,7 +172,7 @@ public class FFShopsActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
-                bundle.putInt("shopId",sm_data.get(position).getId());
+                bundle.putString("shopId",data.get(position).getShopId());
                 intent.putExtras(bundle);
                 intent.setClass(FFShopsActivity.this,FFShopActivity.class);
                 startActivity(intent);
@@ -213,13 +239,17 @@ public class FFShopsActivity extends Activity {
 
         floor_Spinner = (Spinner) findViewById(R.id.id_sm_top_type_floor);
 
-        getData();
+//        getData();
         getType_List();
         getFloor_List();
 
         Bundle sm_bundle = this.getIntent().getExtras();
-        shoppingmall_name.setText(sm_bundle.getString("shoppingmall_name"));
-        getShopData(sm_bundle.getInt("shoppingmall_Id"));
+        String smId = sm_bundle.getString("shopmallId");
+        shoppingmall_name.setText(sm_bundle.getString("shopmallName"));
+        distance = sm_bundle.getString("distance");
+        //getShopData(sm_bundle.getString("shopmallId"));
+        getShopmallData(shopUrl+smId);
+
     }
 
     private void initAdapter(){
@@ -238,14 +268,66 @@ public class FFShopsActivity extends Activity {
     }
 
     private void setAdapter_shopListView() {
-        shop_ListView.setAdapter(shop_Adapter = new CommonAdapter<shopbean>(R.layout.sm_list_shop,getApplicationContext(),shopdata) {
-            @Override
-            public void convert(ViewHolder holder, shopbean item) {
-                holder.setImageResource(R.id.id_activity_sm_img_thumbnail,item.getImage());
-                holder.setText(R.id.id_activity_sm_tv_name,item.getName());
-                holder.setText(R.id.id_activity_sm_tv_typefloor,item.getType()+" "+item.getFloor());
-                holder.setText(R.id.id_activity_sm_tv_distance,item.getDistance());
+        shop_ListView.setAdapter(shop_Adapter = new CommonAdapter<Shopbean>(R.layout.sm_list_shop,getApplicationContext(),data) {
+                    @Override
+                    public void convert(ViewHolder holder, Shopbean item) {
+                        holder.setImageBitmap(R.id.id_activity_sm_img_thumbnail, HttpImage.getHttpBitmap(item.getShopLogo()));
+                        holder.setText(R.id.id_activity_sm_tv_name,item.getShopName());
+                        holder.setText(R.id.id_activity_sm_tv_typefloor,item.getShopType()+" "+item.getShopFloor());
+                        holder.setText(R.id.id_activity_sm_tv_distance,distance);
+                    }
+                }
+
+
+        );
+
+//        shop_ListView.setAdapter(shop_Adapter = new CommonAdapter<shopbean>(R.layout.sm_list_shop,getApplicationContext(),shopdata) {
+//            @Override
+//            public void convert(ViewHolder holder, shopbean item) {
+//                holder.setImageResource(R.id.id_activity_sm_img_thumbnail,item.getImage());
+//                holder.setText(R.id.id_activity_sm_tv_name,item.getName());
+//                holder.setText(R.id.id_activity_sm_tv_typefloor,item.getType()+" "+item.getFloor());
+//                holder.setText(R.id.id_activity_sm_tv_distance,item.getDistance());
+//            }
+//        });
+    }
+
+    private void getShopmallData(String url){
+
+        HttpClient client = new DefaultHttpClient();
+        HttpPost request;
+        try{
+            request = new HttpPost(new URI(url));
+            HttpResponse response = client.execute(request);
+            if (response.getStatusLine().getStatusCode() == 200) { //200表示请求成功
+                HttpEntity entity = response.getEntity();
+                if (entity != null) {
+                    String out = EntityUtils.toString(entity, "UTF-8");
+                    JSONArray jsonArray = new JSONArray(out);
+
+                    data = new ArrayList<Shopbean>();
+                    for(int i = 0; i<jsonArray.length(); i++) {
+                        JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                        Shopbean bean = new Shopbean();
+                        bean.setShopmallId(jsonObject.getString("shopmallId"));
+                        bean.setShopId(jsonObject.getString("shopId"));
+                        bean.setPoiId(jsonObject.getString("poiId"));
+                        bean.setShopName(jsonObject.getString("shopName"));
+                        bean.setShopFloor(jsonObject.getString("shopFloor"));
+                        bean.setShopType(jsonObject.getString("shopType"));
+                        bean.setShopPhone(jsonObject.getString("shopPhone"));
+                        bean.setShopInfo(jsonObject.getString("shopInfo"));
+                        bean.setShopImage(FileUtils.URLIP+jsonObject.getString("shopImage"));
+                        bean.setShopLogo(FileUtils.URLIP+jsonObject.getString("shopLogo"));
+
+                        data.add(bean);
+                    }
+
+                }
             }
-        });
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

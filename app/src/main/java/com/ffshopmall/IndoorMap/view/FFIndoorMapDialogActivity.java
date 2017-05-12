@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.TextView;
 
 import com.ffshopmall.R;
 
@@ -17,6 +18,8 @@ import com.ffshopmall.R;
 public class FFIndoorMapDialogActivity extends DialogFragment {
 
     private View mView;
+    private TextView tv_shopname;
+    private TextView tv_poiId;
 
 
     @Nullable
@@ -28,4 +31,10 @@ public class FFIndoorMapDialogActivity extends DialogFragment {
         return mView;
     }
 
+    private void initView(){
+
+        tv_shopname = (TextView) mView.findViewById(R.id.id_indoormap_dialog_tv_shopId);
+        tv_shopname = (TextView) mView.findViewById(R.id.id_indoormap_dialog_tv_poiId);
+
+    }
 }

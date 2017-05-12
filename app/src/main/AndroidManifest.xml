@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_ALL_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>  
+
     <!--允许程序打开网络套接字-->
     <uses-permission android:name="android.permission.INTERNET"/>
     <!--允许程序设置内置sd卡的写权限-->
@@ -30,7 +32,7 @@
     <application
         android:name="com.ffshopmall.DemoApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/supermarket"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/StyledIndicators">
@@ -66,9 +68,13 @@
 
         </activity>
 
-        <activity android:name=".IndoorMap.view.FFIndoorMapDialogActivity">
+        <activity android:name=".IndoorMap.view.FFIndoorGuideShop">
 
         </activity>
+
+        <!--<activity android:name=".IndoorMap.view.FFIndoorMapDialogActivity">-->
+
+        <!--</activity>-->
 
         <activity
             android:name="com.zaaach.citypicker.CityPickerActivity"
@@ -78,7 +84,7 @@
 
         <!--高德地图开发者密钥-->
         <meta-data android:name="com.amap.api.v2.apikey"
-            android:value="30b50ab7219d8ab7b4ea4d0f26a73cd3"/>
+            android:value="da2de4619d75d9f3527a1211e6d17f73"/>
 
         <!--高德地图室内开发者密钥-->
         <meta-data android:name="indoormap3d_key" android:value="aa554db24e62a3e9ce02ab9d2576356b"/>

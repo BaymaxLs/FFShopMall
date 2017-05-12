@@ -13,6 +13,13 @@
         android:text="星巴克"
         />
 
+    <TextView
+        android:id="@+id/id_indoormap_dialog_tv_poiId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="poiId"
+        />
+
     <Button
         android:id="@+id/id_indoormap_dialog_bt_goshop"
         android:layout_width="wrap_content"

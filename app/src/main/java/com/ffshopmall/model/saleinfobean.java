@@ -7,14 +7,14 @@ package com.ffshopmall.model;
 public class saleinfobean {
 
     private int saleId;
-    private int shopId;
+    private String shopId;
     private String saleName;
     private int saleImage;
     private int saleImage2;
     private String saleTime;
     private String saleContent;
 
-    public saleinfobean(int saleId, int shopId, String saleName, int saleImage, int saleImage2, String saleTime, String saleContent) {
+    public saleinfobean(int saleId, String shopId, String saleName, int saleImage, int saleImage2, String saleTime, String saleContent) {
         this.saleId = saleId;
         this.shopId = shopId;
         this.saleName = saleName;
@@ -32,11 +32,11 @@ public class saleinfobean {
         this.saleId = saleId;
     }
 
-    public int getShopId() {
+    public String getShopId() {
         return shopId;
     }
 
-    public void setShopId(int shopId) {
+    public void setShopId(String shopId) {
         this.shopId = shopId;
     }
 

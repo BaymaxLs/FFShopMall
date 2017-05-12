@@ -51,4 +51,6 @@ dependencies {
     * */
     compile(name: 'IndoorMapSDK2.2.5', ext: 'aar')
     compile files('libs/fengmap_2.0.5.jar')
+    compile 'jp.wasabeef:glide-transformations:2.0.2'   //glide实现图片各种形状
+    compile 'com.zhy:okhttputils:2.6.2'
 }

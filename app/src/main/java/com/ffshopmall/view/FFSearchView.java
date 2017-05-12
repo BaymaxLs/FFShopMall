@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -74,7 +75,7 @@ public class FFSearchView extends LinearLayout implements View.OnClickListener {
     /*
     * 设置搜索回调接口
     * */
-    public void setSearchListener(SearchViewListener listener){
+    public void setSearchListener(SearchViewListener listener) {
         m_Listener = listener;
     }
 
@@ -92,7 +93,7 @@ public class FFSearchView extends LinearLayout implements View.OnClickListener {
         et_input = (EditText) findViewById(R.id.id_search_et_input);
         tv_search = (TextView) findViewById(R.id.id_search_tv_search);
         icon_delete = (ImageView) findViewById(R.id.id_search_icon_delete);
-
+        lv_tips = (ListView) findViewById(R.id.search_lv_tips);
     }
 
     private void initEvent() {
@@ -105,17 +106,27 @@ public class FFSearchView extends LinearLayout implements View.OnClickListener {
         et_input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     lv_tips.setVisibility(GONE);
                     notifyStartSearching(et_input.getText().toString());
                 }
                 return true;
             }
         });
+        lv_tips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String text = lv_tips.getAdapter().getItem(i).toString();
+                et_input.setText(text);
+                et_input.setSelection(text.length());
+                lv_tips.setVisibility(View.GONE);
+                notifyStartSearching(text);
+            }
+        });
     }
 
-    private void notifyStartSearching(String text){
-        if(m_Listener != null){
+    private void notifyStartSearching(String text) {
+        if (m_Listener != null) {
             m_Listener.onSearch(et_input.getText().toString());
         }
 
@@ -123,13 +134,13 @@ public class FFSearchView extends LinearLayout implements View.OnClickListener {
         imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
-    public void setAutoCompleteAdapter(ArrayAdapter<String> adapter){
+    public void setAutoCompleteAdapter(ArrayAdapter<String> adapter) {
         this.m_AutoCompleteAdapter = adapter;
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.id_search_et_input:
                 lv_tips.setVisibility(VISIBLE);
                 break;
@@ -144,7 +155,7 @@ public class FFSearchView extends LinearLayout implements View.OnClickListener {
 
     }
 
-    public  interface SearchViewListener{
+    public interface SearchViewListener {
 
         /**
          * 更新自动补全内容
@@ -174,16 +185,16 @@ public class FFSearchView extends LinearLayout implements View.OnClickListener {
             if (!"".equals(s.toString())) {
                 icon_delete.setVisibility(VISIBLE);
                 lv_tips.setVisibility(VISIBLE);
-                if(m_AutoCompleteAdapter != null && lv_tips.getAdapter() != m_AutoCompleteAdapter){
+                if (m_AutoCompleteAdapter != null && lv_tips.getAdapter() != m_AutoCompleteAdapter) {
                     lv_tips.setAdapter(m_AutoCompleteAdapter);
                 }
                 //更新autoComplete数据
-                if(m_Listener != null){
-                    m_Listener.onReFreshAutoComplete(s+"");
+                if (m_Listener != null) {
+                    m_Listener.onReFreshAutoComplete(s + "");
                 }
-            }else{
+            } else {
                 icon_delete.setVisibility(GONE);
-                if(m_HintAdapter != null){
+                if (m_HintAdapter != null) {
                     lv_tips.setAdapter(m_HintAdapter);
                 }
                 lv_tips.setVisibility(GONE);

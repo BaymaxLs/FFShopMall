@@ -117,7 +117,7 @@ public class FFIndoorMapMain extends FragmentActivity {
         icon_back = (ImageView) findViewById(R.id.id_map_top_icon_back);
         tv_title = (TextView) findViewById(R.id.id_map_top_tv_mallname);
 
-        tv_title.setText("导航至"+shopName);
+        tv_title.setText("东城万达广场");
     }
 
     private void initEvent() {
@@ -233,7 +233,6 @@ public class FFIndoorMapMain extends FragmentActivity {
             mIndoorMapFragment.clearFeatureColor("");
             drawRouteStartAndStop(routePlanningData);
             mIndoorMapFragment.refreshMap();
-
         }
 
         @Override
@@ -290,6 +289,7 @@ public class FFIndoorMapMain extends FragmentActivity {
                 String toasttext = "";
 
                 toasttext += "PoiId:" + poiId;
+                System.out.println("poiId:"+poiId);
                 IMSearchResult searchresult = mDataManager.searchByID(poiId);
                 //toasttext += "-" + vec.size() + "-";
                 if (searchresult != null) {

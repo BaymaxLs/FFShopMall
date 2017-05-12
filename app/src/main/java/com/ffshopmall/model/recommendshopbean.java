@@ -6,7 +6,7 @@ package com.ffshopmall.model;
 
 public class recommendshopbean {
 
-    private int shopId;
+    private String shopId;
     private int shopLogo;
     private String shopName;
     private String shopGoods1;
@@ -14,7 +14,7 @@ public class recommendshopbean {
     private String shopGoods3;
     private int rs_Num;
 
-    public recommendshopbean(int shopId, int shopLogo, String shopName, String shopGoods1, String shopGoods2, String shopGoods3, int rs_Num) {
+    public recommendshopbean(String shopId, int shopLogo, String shopName, String shopGoods1, String shopGoods2, String shopGoods3, int rs_Num) {
         this.shopId = shopId;
         this.shopLogo = shopLogo;
         this.shopName = shopName;
@@ -24,11 +24,11 @@ public class recommendshopbean {
         this.rs_Num = rs_Num;
     }
 
-    public int getShopId() {
+    public String getShopId() {
         return shopId;
     }
 
-    public void setShopId(int shopId) {
+    public void setShopId(String shopId) {
         this.shopId = shopId;
     }
 
